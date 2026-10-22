@@ -35,17 +35,24 @@ Five calls, in this order:
 4. `POST /api/booking/hold` reserves the slot and returns a Stripe `checkoutUrl`. The card is authorized, not charged.
 5. `POST /api/booking/confirm` after the customer pays. This confirms with the supplier and captures the payment.
 
-Details and request bodies are in [docs/booking.md](docs/booking.md). A runnable version of steps 1 to 4 is in [examples/book.mjs](examples/book.mjs).
+Details and request bodies are in [docs/booking.md](docs/booking.md). A runnable version of steps 1 to 4 is in [examples/node/book.mjs](examples/node/book.mjs).
 
 ## Examples
 
-All of them read `TOURSCANNER_API_KEY` from the environment. Node 18 or newer, no dependencies.
+Node, Python, Ruby, Go and curl. Each does the same three things: search, check availability, and run the booking flow up to the Stripe link. None needs a package beyond the language's standard library (Node 18 or newer).
 
-```sh
-node examples/search.mjs rome "colosseum"
-node examples/availability.mjs 12345 2026-12-01
-python3 examples/search.py rome colosseum
-```
+| | search | availability | book |
+|---|---|---|---|
+| Node | `node examples/node/search.mjs rome colosseum` | `node examples/node/availability.mjs 12345 2026-12-01` | `OPTION_CODE=... node examples/node/book.mjs 12345 2026-12-01` |
+| Python | `python3 examples/python/search.py rome colosseum` | `python3 examples/python/availability.py 12345 2026-12-01` | `OPTION_CODE=... python3 examples/python/book.py 12345 2026-12-01` |
+| Ruby | `ruby examples/ruby/search.rb rome colosseum` | `ruby examples/ruby/availability.rb 12345 2026-12-01` | `OPTION_CODE=... ruby examples/ruby/book.rb 12345 2026-12-01` |
+| Go | `go run . search rome colosseum` | `go run . availability 12345 2026-12-01` | `OPTION_CODE=... go run . book 12345 2026-12-01` |
+
+Run the Go ones from `examples/go`. The curl scripts are in `examples/curl`.
+
+They read your key from `TOURSCANNER_API_KEY`. Set `TOURSCANNER_BASE_URL` to point them at a different host. Run `book` without `OPTION_CODE` first: it prints the options and stops, so you can pick a code. On the production host a full `book` run places a real hold and creates a real Stripe checkout.
+
+Missing your language? The API is plain JSON over HTTPS, so any HTTP client works. The OpenAPI spec above will generate a client for most languages.
 
 ## For AI agents
 

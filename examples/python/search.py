@@ -5,6 +5,7 @@ import sys
 import urllib.parse
 import urllib.request
 
+BASE = os.environ.get("TOURSCANNER_BASE_URL", "https://tourscanner.ai")
 key = os.environ.get("TOURSCANNER_API_KEY")
 if not key:
     sys.exit("Set TOURSCANNER_API_KEY first")
@@ -15,7 +16,7 @@ if len(sys.argv) > 2:
     params["q"] = sys.argv[2]
 
 req = urllib.request.Request(
-    "https://tourscanner.ai/api/search/activities?" + urllib.parse.urlencode(params),
+    f"{BASE}/api/search/activities?" + urllib.parse.urlencode(params),
     headers={"X-API-Key": key},
 )
 with urllib.request.urlopen(req) as res:

@@ -2,9 +2,9 @@
 // Usage: node book.mjs <activityId> <YYYY-MM-DD>
 //
 // On the production host this places a real supplier hold and a real Stripe
-// checkout (the card is authorized only if someone pays it). Point BASE at a
+// checkout (the card is authorized only if someone pays it). Point TOURSCANNER_BASE_URL at a
 // sandbox if you have one.
-const BASE = process.env.BASE ?? 'https://tourscanner.ai'
+const BASE = process.env.TOURSCANNER_BASE_URL ?? 'https://tourscanner.ai'
 const key = process.env.TOURSCANNER_API_KEY
 if (!key) throw new Error('Set TOURSCANNER_API_KEY first')
 

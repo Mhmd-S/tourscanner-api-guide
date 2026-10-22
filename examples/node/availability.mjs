@@ -1,11 +1,12 @@
 // Live slots for one activity on one date. Usage: node availability.mjs <activityId> <YYYY-MM-DD> [adults]
+const BASE = process.env.TOURSCANNER_BASE_URL ?? 'https://tourscanner.ai'
 const key = process.env.TOURSCANNER_API_KEY
 if (!key) throw new Error('Set TOURSCANNER_API_KEY first')
 
 const [activityId, date, adults = '2'] = process.argv.slice(2)
 if (!activityId || !date) throw new Error('Usage: node availability.mjs <activityId> <YYYY-MM-DD> [adults]')
 
-const res = await fetch('https://tourscanner.ai/api/availability/slots', {
+const res = await fetch(`${BASE}/api/availability/slots`, {
   method: 'POST',
   headers: { 'X-API-Key': key, 'Content-Type': 'application/json' },
   body: JSON.stringify({ activityId: Number(activityId), date, adults: Number(adults) }),
