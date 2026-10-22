@@ -2,7 +2,7 @@
 
 How to use the [TourScanner](https://tourscanner.ai) API: search tours and activities, check live availability, and book them. It also covers the MCP server, if you want an AI agent to do the same thing.
 
-The catalog is about a million activities from 14 providers, behind one set of endpoints. This repo is the practical side of the docs: what to call, in what order, and the mistakes that cost people an afternoon.
+It's a REST API (JSON over HTTPS, OpenAPI 3.1) for tours, activities and attractions worldwide. The catalog is about a million activities from 14 providers, behind one set of endpoints. This repo is the practical side of the docs: what to call, in what order, and the mistakes that cost people an afternoon.
 
 Reference docs live at [tourscanner.ai/docs](https://tourscanner.ai/docs), and the machine-readable spec is at [tourscanner.ai/openapi.json](https://tourscanner.ai/openapi.json).
 

@@ -1,0 +1,31 @@
+# TourScanner API guide
+
+> Examples and notes for the TourScanner API: search tours and activities, check live availability, book them, and connect an AI agent through the MCP server. Base URL https://tourscanner.ai, API key required.
+
+## Start here
+
+- [README](README.md): get a key, first request, the booking flow, common mistakes
+- [Booking flow](docs/booking.md): availability, options, hold, Stripe checkout, confirm, with request and response bodies
+- [MCP server](docs/mcp.md): the 12 tools and client setup for Claude, Cursor, VS Code and Codex
+
+## Code
+
+- [Node examples](examples/node): search, availability, book
+- [Python examples](examples/python): search, availability, book
+- [Ruby examples](examples/ruby): search, availability, book
+- [Go example](examples/go): one program, three commands
+- [curl scripts](examples/curl): search, availability
+
+## Reference
+
+- [API docs](https://tourscanner.ai/docs)
+- [OpenAPI 3.1 spec](https://tourscanner.ai/openapi.json)
+- [MCP page](https://tourscanner.ai/mcp)
+- [Site llms.txt](https://tourscanner.ai/llms.txt)
+
+## Facts worth knowing
+
+- Auth is an `X-API-Key` header. Keys are issued by email: api@tourscanner.ai.
+- Prices are integers in minor units (5400 is 54.00).
+- Booking flow: `POST /api/availability/slots`, `POST /api/booking/options`, `POST /api/booking/hold` (returns a Stripe `checkoutUrl`), then `POST /api/booking/confirm` with the Stripe `session_id`.
+- The MCP endpoint is `https://tourscanner.ai/api/mcp` (Streamable HTTP, same key).
