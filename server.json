@@ -1,0 +1,26 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.Mhmd-S/tourscanner",
+  "title": "TourScanner",
+  "description": "Search, check availability and book tours and activities worldwide.",
+  "repository": {
+    "url": "https://github.com/Mhmd-S/tourscanner-api-guide",
+    "source": "github"
+  },
+  "version": "1.0.0",
+  "websiteUrl": "https://tourscanner.ai/mcp",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://tourscanner.ai/api/mcp",
+      "headers": [
+        {
+          "name": "X-API-Key",
+          "description": "TourScanner API key. Request one at api@tourscanner.ai.",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
